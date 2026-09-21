@@ -108,6 +108,6 @@ document.addEventListener("DOMContentLoaded", () => {
         XLSX.utils.book_append_sheet(workbook, worksheet, "Aspirasi Classmeet");
 
         // Unduh File Excel (.xlsx) ke perangkat
-        XLSX.writeFile(workbook, "Rekap_Aspirasi_Classmeet_OSAMASA.xlsx");
+        XLSX.writeFile(workbook, "Rekap_Aspirasi_Classmeet_OSIM.xlsx");
     }
 });
