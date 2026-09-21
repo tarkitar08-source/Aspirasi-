@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aspirasi Classmeet OSIM</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="aspirasi.css">
+</head>
+<body class="bg-blue-950 text-slate-100 font-sans selection:bg-blue-600 selection:text-white min-h-screen flex flex-col justify-between">
+
+    <!-- HEADER / NAVIGASI -->
+    <nav class="w-full glass-nav border-b border-blue-900/60 py-4 px-6 shadow-md">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-white text-blue-950 flex items-center justify-center font-black shadow">
+                    📢
+                </div>
+                <div>
+                    <h1 class="font-extrabold text-base tracking-wide text-white">ASPIRASI CLASSMEET</h1>
+                    <p class="text-xs text-blue-300">OSIM 26/27</p>
+                </div>
+            </div>
+            <!-- Tombol Buka Panel Download Khusus Pengurus -->
+            <button id="open-auth-modal" class="px-4 py-2 rounded-xl bg-blue-900/80 hover:bg-blue-800 border border-blue-700 text-xs font-bold text-white transition shadow">
+                🔒 Unduh Excel Rekap
+            </button>
+        </div>
+    </nav>
+
+    <!-- KONTEN UTAMA: FORM PENGISIAN ASPIRASI -->
+    <main class="max-w-xl mx-auto px-4 py-12 flex-grow w-full">
+        <div class="text-center mb-8">
+            <span class="px-3 py-1 rounded-full bg-blue-900/60 border border-blue-700 text-blue-200 text-xs font-semibold uppercase tracking-wider">
+                Kotak Suara Siswa
+            </span>
+            <h2 class="text-3xl font-extrabold text-white mt-3">Kirim Aspirasi Terbaikmu!</h2>
+            <p class="text-slate-300 text-sm mt-2">
+                Sampaikan aspirasimu! Cukup masukkan nama kelas dan aspirasimu!
+            </p>
+        </div>
+
+        <div class="p-8 rounded-3xl bg-blue-900/40 border border-blue-800/80 shadow-2xl backdrop-blur-md">
+            <form id="classmeet-form" class="space-y-5">
+                <div>
+                    <label class="block text-sm font-bold text-slate-200 mb-2">Nama Kelas</label>
+                    <input type="text" id="input-kelas" required placeholder="Contoh: VII A, VIII.2, IX B" class="w-full px-4 py-3.5 rounded-xl bg-blue-950 border border-blue-800 text-white focus:outline-none focus:border-white text-sm shadow-inner">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold text-slate-200 mb-2">Aspirasi / Usulan Kegiatan Classmeet</label>
+                    <textarea id="input-aspirasi" rows="4" required placeholder="Tuliskan aspirasi atau usulan kegiatan classmeetmu di sini..." class="w-full px-4 py-3.5 rounded-xl bg-blue-950 border border-blue-800 text-white focus:outline-none focus:border-white text-sm shadow-inner"></textarea>
+                </div>
+                <button type="submit" class="w-full py-4 rounded-xl bg-white text-blue-950 font-extrabold hover:bg-blue-50 transition shadow-lg text-sm tracking-wide">
+                    Kirim Aspirasi Kelas 🚀
+                </button>
+            </form>
+            
+            <!-- Notifikasi Sukses -->
+            <div id="success-alert" class="hidden mt-4 p-3 rounded-xl bg-emerald-600/20 border border-emerald-500 text-emerald-300 text-center text-sm font-medium">
+                ✨ Terima kasih! Aspirasi kelasmu berhasil disimpan ke sistem.
+            </div>
+        </div>
+    </main>
+
+    <!-- MODAL MASUK KODE RAHASIA UNTUK DOWNLOAD EXCEL -->
+    <div id="auth-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center px-4 hidden">
+        <div class="max-w-md w-full p-6 sm:p-8 rounded-3xl bg-blue-950 border border-blue-800 shadow-2xl relative">
+            <button id="close-modal" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg">✕</button>
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-blue-900 border border-blue-700 text-white flex items-center justify-center text-xl mx-auto mb-3 shadow">🔑</div>
+                <h3 class="text-lg font-bold text-white">Panel Akses Khusus Pengurus</h3>
+                <p class="text-xs text-slate-300 mt-1">Masukkan kode rahasia untuk membuka dan mendownload rekap file Excel.</p>
+            </div>
+            <form id="auth-form" class="space-y-4">
+                <div>
+                    <input type="password" id="secret-code" required placeholder="Masukkan Kode Rahasia..." class="w-full px-4 py-3 rounded-xl bg-blue-900/50 border border-blue-700 text-white text-center tracking-widest text-sm focus:outline-none focus:border-white">
+                </div>
+                <button type="submit" class="w-full py-3 rounded-xl bg-white text-blue-950 font-bold hover:bg-blue-50 transition text-sm">
+                    Verifikasi & Download Excel
+                </button>
+            </form>
+            <p id="auth-error" class="hidden mt-3 text-red-400 text-xs text-center font-medium">❌ Kode rahasia salah! Hubungi ketua/admin jika lupa.</p>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="py-6 border-t border-blue-900/40 bg-blue-950 text-slate-400 text-xs text-center">
+        <p>&copy; 2026 OSAMASA 26/27. Data Tersimpan Aman di Browser Device.</p>
+    </footer>
+
+    <!-- SheetJS CDN untuk Export Excel (.xlsx) langsung di Browser -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script src="aspirasi.js"></script>
+</body>
+</html>

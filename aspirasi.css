@@ -1,0 +1,16 @@
+.glass-nav {
+    background: rgba(10, 25, 47, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #07111e;
+}
+::-webkit-scrollbar-thumb {
+    background: #1e3a8a;
+    border-radius: 3px;
+}
