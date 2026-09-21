@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     // KODE RAHASIA UNTUK DOWNLOAD EXCEL (Dapat diubah sesuai keinginan pengurus)
-    const CORRECT_CODE = "osamasa2026"; 
+    const CORRECT_CODE = "OSIM2026"; 
 
     // 1. Logika Pengiriman Aspirasi Kelas
     const form = document.getElementById("classmeet-form");
